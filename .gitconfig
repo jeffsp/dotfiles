@@ -1,0 +1,11 @@
+[user]
+	name = Jeff Perry
+	email = jeffsp@gmail.com
+[alias]
+	st = status
+	cia = commit --all
+	log1 = log --oneline --graph --decorate
+[color]
+	ui = auto
+[core]
+	excludesfile = /home/jsp/.gitignore_global
