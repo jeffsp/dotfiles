@@ -26,6 +26,12 @@ alias tree5='tree -d -L 5'
 # resource errors
 export MAGICK_THREAD_LIMIT=1
 
+# For Ratex app
+export RATEX_SETTINGS_FILE=~/.ratex.config
+
+# For Flask
+export OAUTHLIB_INSECURE_TRANSPORT=1
+
 activate()
 {
     virtualenv v;
