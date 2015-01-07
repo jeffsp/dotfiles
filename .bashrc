@@ -1,37 +1,48 @@
 # .bashrc
 
+# User specific aliases and functions
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-# User specific aliases and functions
-export PATH=~/bin:/usr/lib64/openmpi/bin:~/.matlab:~/Software/adt-bundle/sdk/tools:~/Software/adt-bundle/sdk/platform-tools:$PATH
+# General
+alias h='history'
+alias l.='ls -d .* --color=auto'
+alias ll='ls -l --color=auto'
+alias ls='ls --color=auto'
+alias lsa='ls -altr'
+alias vi='vim'
+export PATH=~/bin:${PATH}
 export EDITOR="vim"
-export OMP_NUM_THREADS=15
-alias ls='ls --color=auto --classify'
-alias h='history 10000'
-alias lsa='ls -altrh'
-alias df='df -h'
-alias view='vim -R'
-alias apt='sudo apt-get install'
-alias pylab='ipython --pylab'
+
+# MATLAB
 alias matlab='matlab -c ~/.matlab/license.dat'
-alias tree2='tree -d -L 2'
-alias tree3='tree -d -L 3'
-alias tree4='tree -d -L 4'
-alias tree5='tree -d -L 5'
+export PATH=~/.matlab:$PATH
 
-# Make imagemagick use only 1 thread in order to avoid libgomp thread
-# resource errors
-export MAGICK_THREAD_LIMIT=1
+# OMP / MPI
+# Set this according to how many cores your machine has
+export OMP_NUM_THREADS=15
+export PATH=/usr/lib64/openmpi/bin:$PATH
 
-# For Flask
+# Android Development
+export PATH=~/Software/adt-bundle/sdk/tools:~/Software/adt-bundle/sdk/platform-tools:$PATH
+
+# Flask
 export OAUTHLIB_INSECURE_TRANSPORT=1
-
 activate()
 {
     virtualenv v;
     . v/bin/activate;
     pip install -r requirements.txt;
 }
+
+# Conda
+apython() {
+    export PATH=/home/jperry/miniconda/bin:${PATH}
+    source activate py27
+}
+
+apython
+eval `dircolors ~/.dir_colors`
