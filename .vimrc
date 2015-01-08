@@ -1,90 +1,121 @@
-syntax enable
-set background=dark
-set t_Co=16
-let g:solarized_contrast="high"
-let g:solarized_visibility="high"
-colorscheme solarized
+" Reload .vimrc on write
+autocmd! bufwritepost .vimrc source %
 
-" highlight trailing spaces
-highlight RedundantSpaces ctermbg=red
-match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
+let g:netrw_list_hide= '*.pyc,*.o$'
 
+" For terminal vim
+set title
+" Kepp more context when scrolling
+set scrolloff=3
+" Not compatible with vi
 set nocompatible
-set smartindent
-set expandtab
-set ffs=unix
-set ff=unix
-set noswapfile
-set noerrorbells
+" Show numbers
 set number
-set hid
+" Don't close file when chaning buffers
+set hidden
+" Flash screen on error
+set visualbell
+" Use spaces, not tabs
+set expandtab
+set smarttab
+" Make search case-sensitive only if the search contains an uppercase
+set ignorecase
 set smartcase
-set showmatch
-set autowrite
-set autoread
-set autoindent
+" Auto indent
+set ai
+" 1 tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
-set magic
-set wrapscan
-set hlsearch
-set showmode
+" Text width
+set tw=79
+" Autowrite
+set aw
+"Always show current position
 set ruler
-set showbreak="..."
-set laststatus=2
-set statusline=%F%m%r%h\ %y\ \ %=%(%l\/%L%)\ %c
-set shell=/bin/bash
-set viminfo='10,\"100,:20,%,n~/.viminfo
-set tw=120
+" Height of the command bar
+set cmdheight=2
+" Highlight search results
+set hlsearch
+" For regular expressions turn magic on
+set magic
+" Set to auto read when a file is changed from the outside
+set autoread
+" Show matching brackets when text indicator is over them
+set showmatch
+" Remember info about open buffers on close
+set viminfo^=%
+" Set longer history
+set history=1000
+" Better tab completion
+set wildmenu
+set wildmode=list:longest
+set wildignore=*.o,*~,*.pyc
+
+" Remember undo's across edit sessions (vim 7.3)
 set undofile
 set undodir=~/.vim/undodir
-set undolevels=1000 "maximum number of changes that can be undone
-set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+set undolevels=10000 "maximum number of changes that can be undone
+set undoreload=100000 "maximum number lines to save for undo on a buffer reload
 
-let g:DoxygenToolkit_authorName="Jeff Perry <jeffsp@gmail.com>"
-let g:DoxygenToolkit_licenseTag="Copyright (C) 2014 Center for Perceptual Systems"
-let g:DoxygenToolkit_commentType="C++"
-let g:DoxygenToolkit_versionString="1.0"
+syntax enable
+syntax on
 
-filetype plugin on
-compiler! gcc
-
-" unhilight last search
-nmap <SPACE> <SPACE>:noh<CR>
-
-" create doxygen comment
-noremap <F6> :Dox<CR>
-noremap <S-F6> :DoxAuthor<CR>
-noremap <C-F6> :DoxLic<CR>
-
-" make
-noremap <F7>   :make -j<CR>
-noremap <F8>   :make run<CR>
-
-" buffers
-noremap <C-l>  :bn<cr> " ctrl-l goes to next buffer
-noremap <C-h>  :bp<cr> " ctrl-h goes to previous buffer
-noremap <C-n>  :cnext<cr> " ctrl-n goes to next error
-
-" resource .vimrc when it changes
-au! BufWritePost .vimrc source %
+" Solarize!
+set background=dark
+set t_Co=256
+"let g:solarized_termcolors = 256
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+colorscheme solarized
 
 call togglebg#map("<F5>")
 
-"" Jump to assertion errors when running from make
-""set efm^=%*[^\ ]:%f:%l:%m
-"
-"" Add some new filetypes
-"augroup filetype
-"    au! BufRead,BufNewFile *.cc set syntax=cpp11
-"    au! BufRead,BufNewFile *.py set filetype=python
-"    au! BufRead,BufNewFile *.cpp set syntax=cpp11
-"    au! BufRead,BufNewFile *.h set syntax=cpp11
-"    au! BufRead,BufNewFile *.mg set filetype=matlab
-"    au! BufRead,BufNewFile *.mex set filetype=matlab
-"    au! BufRead,BufNewFile *.ypp set filetype=yacc
-"    au! BufRead,BufNewFile *.pro set filetype=make
-"    au! BufRead,BufNewFile COMMIT_* set filetype=gitcommit
-"    au! BufRead,BufNewFile wscript set filetype=python
-"augroup end
-"
+" Highlight trailing spaces and tabs
+"highlight ExtraWhitespace ctermbg=red guibg=red
+"match ExtraWhitespace /\s\+$/
+"highlight Tabs ctermbg=yellow guibg=yellow
+"2match Tabs /\t/
+highlight RedundantSpaces ctermbg=red
+match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
+
+filetype indent plugin on
+
+" Make the status line more informative
+set statusline=%t       "tail of the filename
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+set statusline+=%y      "filetype
+set statusline+=%=      "left/right separator
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+
+set laststatus=2
+
+" Next buffer
+noremap <C-L> :bnext<cr>
+
+" Previous buffer
+noremap <C-H> :bprevious<cr>
+
+" Turn off search highlights
+noremap <space> :noh<cr>
+
+" Run make, '!' prevents from jumping to the first error
+noremap <F7> :make<cr>
+
+" Go to next error
+noremap <C-N> :cnext<cr>
+
+" Jump to line and column on '
+nnoremap ' `
+nnoremap ` '
+
+" Set the leader
+let mapleader = ","
+
+" Better matching
+runtime macros/matchit.vim
