@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/jperry/miniconda/pkgs'
+let g:netrw_dirhist_2='/home/jperry/repositories/asd-analysis-core'
+let g:netrw_dirhist_3='/home/jperry/repositories/asd-analysis-core/asdpy'
+let g:netrw_dirhist_4='/home/jperry/repositories/asd-analysis-core/asdpy/readers'
+let g:netrw_dirhist_5='/home/jperry/projects/data_accessor/test/data_accessor'
+let g:netrw_dirhist_6='/home/jperry/repositories/asd-analysis-core'
+let g:netrw_dirhist_7='/home/jperry/repositories/asd-analysis-core/asdpy'
+let g:netrw_dirhist_8='/home/jperry/repositories/asd-analysis-core/asdpy/readers'
+let g:netrw_dirhist_9='/home/jperry/projects/data_accessor/test/data_accessor'
