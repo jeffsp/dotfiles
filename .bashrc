@@ -39,10 +39,14 @@ activate()
 }
 
 # Conda
-apython() {
+py27() {
     export PATH=/home/jperry/miniconda/bin:${PATH}
     source activate py27
 }
 
-apython
+py3() {
+    export PATH=/home/jperry/miniconda/bin:${PATH}
+    source activate py3
+}
+
 eval `dircolors ~/.dir_colors`
