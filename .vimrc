@@ -50,6 +50,8 @@ set history=1000
 set wildmenu
 set wildmode=list:longest
 set wildignore=*.o,*~,*.pyc
+" Toggle between 'paste' and 'nopaste'
+set pastetoggle=<F2>
 
 " Remember undo's across edit sessions (vim 7.3)
 set undofile
@@ -76,7 +78,8 @@ call togglebg#map("<F5>")
 "highlight Tabs ctermbg=yellow guibg=yellow
 "2match Tabs /\t/
 highlight RedundantSpaces ctermbg=red
-match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
+match RedundantSpaces /\s\+$\|\t\|\t\+$/
+"match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
 
 filetype indent plugin on
 
