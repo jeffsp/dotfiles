@@ -1,3 +1,7 @@
+"pathogen
+execute pathogen#infect()
+call pathogen#helptags()
+
 " Reload .vimrc on write
 autocmd! bufwritepost .vimrc source %
 
@@ -7,11 +11,13 @@ let g:netrw_list_hide= '*.pyc,*.o$'
 set title
 " Kepp more context when scrolling
 set scrolloff=3
+" Allow backspacing over autoindent, EOL, and BOL
+set backspace=2
 " Not compatible with vi
 set nocompatible
 " Show numbers
 set number
-" Don't close file when chaning buffers
+" Don't close file when changing buffers
 set hidden
 " Flash screen on error
 set visualbell
@@ -27,7 +33,9 @@ set ai
 set shiftwidth=4
 set tabstop=4
 " Text width
-set tw=79
+set tw=120
+" Highlight columns > 80
+let &colorcolumn=121
 " Autowrite
 set aw
 "Always show current position
@@ -110,6 +118,14 @@ noremap <space> :noh<cr>
 " Run make, '!' prevents from jumping to the first error
 noremap <F7> :make<cr>
 
+" Execute the current buffer
+noremap <F8> :!%:p<cr>
+nnoremap <leader>x :!%:p<cr>
+
+" Pylint the current buffer
+noremap <F9> :!flake8 %:p && pylint -E %:p<cr>
+nnoremap <leader>l :!flake8 %:p && pylint -E %:p<cr>
+
 " Go to next error
 noremap <C-N> :cnext<cr>
 
@@ -120,5 +136,26 @@ nnoremap ` '
 " Set the leader
 let mapleader = ","
 
+" hg stuff
+nnoremap <leader>d :!hg diff <cr>
+nnoremap <leader>s :!hg st <cr>
+
 " Better matching
 runtime macros/matchit.vim
+
+" python-mode config
+"
+" Open all folds by default
+"au BufRead * normal zR
+
+" jedi-vim config
+"let g:jedi#use_tabs_not_buffers = 0
+
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+"let g:syntastic_always_populate_loc_list = 0
+"let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
