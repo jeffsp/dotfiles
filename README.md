@@ -9,11 +9,9 @@
     ln -f ./dotfiles/.zshrc
     ...
 ```
-
 1. Change default shell
 
 ```
     chsh -s /bin/zsh
 ```
-
 1. Restart shell
