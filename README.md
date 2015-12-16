@@ -1,7 +1,7 @@
 # Dotfiles Checklist
 
-* [install pathogen](https://github.com/tpope/vim-pathogen)
-* [install oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+* [Install pathogen](https://github.com/tpope/vim-pathogen)
+* [Install oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 * Make symbolic links to dot files.  (Do not link ~/dotfiles/.gitignore)
 
 ```
