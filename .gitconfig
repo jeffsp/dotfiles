@@ -9,3 +9,5 @@
 	ui = auto
 [core]
 	excludesfile = /home/jsp/.gitignore_global
+[push]
+	default = simple
